@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 class NoteItem extends StatelessWidget {
-  final String title;
-  final String subtitle;
-  final String date;
+  final String? title;
+  final String? content;
+  final String? date;
   final Color? color;
   final VoidCallback? onTap;
 
   const NoteItem({
     super.key,
-    required this.title,
-    required this.subtitle,
-    required this.date,
+    this.title,
+    this.content,
+    this.date,
     this.color,
     this.onTap,
   });
@@ -37,14 +37,14 @@ class NoteItem extends StatelessWidget {
               minVerticalPadding: 0,
               contentPadding: const EdgeInsets.all(0),
               onTap: onTap,
-              title: Text(title),
+              title: Text(title ?? ''),
               titleTextStyle: Theme.of(
                 context,
               ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
               subtitle: Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Text(
-                  subtitle,
+                  content ?? '',
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -64,7 +64,7 @@ class NoteItem extends StatelessWidget {
             Align(
               alignment: Alignment.bottomRight,
               child: Text(
-                date,
+                date ?? '',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: Theme.of(
                     context,
